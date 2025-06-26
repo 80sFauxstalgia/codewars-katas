@@ -6,10 +6,16 @@ function App() {
   const [selectedKata, setSelectedKata] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [asArray, setAsArray] = useState(true); // ← new checkbox state
+  const [asArray, setAsArray] = useState(true); //checkbox
+  const [error, setError] = useState("");
 
   async function runTest() {
-    if (!selectedKata) return;
+    if (!selectedKata) {
+      setError("Please select a kata before running the test.");
+      return;
+    }
+
+    setError(""); // Clear any previous error
 
     try {
       const kataModule = await import(`./katas/${selectedKata}.js`);
@@ -58,6 +64,17 @@ function App() {
             </option>
           ))}
         </select>
+        {error && (
+          <div
+            style={{
+              color: "#ff6b6b",
+              marginBottom: "1rem",
+              fontWeight: "bold",
+            }}
+          >
+            {error}
+          </div>
+        )}
 
         <label style={{ display: "block", marginBottom: "1rem" }}>
           <input
