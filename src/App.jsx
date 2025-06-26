@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const katas = ["filterList"];
+const katas = ["filterList", "numberToString"];
 
 function App() {
   const [selectedKata, setSelectedKata] = useState("");
