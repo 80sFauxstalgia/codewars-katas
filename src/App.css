@@ -1,90 +1,110 @@
+/* Vaporwave bisexual lighting background */
 .app-bg {
-  background: linear-gradient(135deg, #000000, #1a1a1a);
+  background: linear-gradient(135deg, #2d0035, #1a0048, #00194d);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
-  font-family: "Arial Narrow", sans-serif;
+  font-family: "Fira Code", monospace;
 }
 
-/* Main card — frosted LCARS look */
+/* Animated background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glass card */
 .glass-card {
-  background: rgba(255, 153, 51, 0.1); /* LCARS orange tint */
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 1rem;
   padding: 2rem;
   width: 100%;
-  max-width: 700px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 2px solid rgba(255, 204, 102, 0.25);
-  box-shadow: 0 0 20px rgba(255, 204, 102, 0.1);
-  color: #ffcc66;
+  max-width: 600px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 40px rgba(255, 0, 255, 0.15);
+  color: #fefefe;
 }
 
-/* LCARS-style title */
+/* Header text */
 h1 {
-  text-transform: uppercase;
-  color: #ff9933;
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 5px rgba(255, 153, 51, 0.5);
+  color: #ff8cfa;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 8px #e471f9;
+  text-align: center;
 }
 
-/* Descriptive text */
+/* Description */
 p {
-  color: #9999ff;
+  color: #c5b3ff;
   margin-bottom: 1.5rem;
-  font-size: 1rem;
+  text-align: center;
 }
 
-/* Inputs, selects, and buttons with LCARS colors */
+/* Inputs, select, buttons */
 select,
 input,
 button {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  border-radius: 9999px; /* pill shape */
+  border-radius: 0.75rem;
   border: none;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffcc66;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fefefe;
   outline: none;
   transition: all 0.2s ease;
   box-sizing: border-box;
-  text-transform: uppercase;
+}
+
+/* Inputs and selects */
+input,
+select {
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 input:focus,
 select:focus {
-  border: 2px solid #6699cc;
-  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid #8cffff;
+  box-shadow: 0 0 8px #8cffff;
 }
 
+/* Run button */
 button {
-  background: #ff9933;
+  background: linear-gradient(135deg, #8cffff, #ff8cfa);
   color: #000;
   font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(255, 153, 51, 0.4);
+  box-shadow: 0 0 12px rgba(255, 140, 250, 0.3);
 }
 
 button:hover {
-  background: #ffcc66;
-  box-shadow: 0 0 15px rgba(255, 204, 102, 0.6);
+  box-shadow: 0 0 20px rgba(255, 140, 250, 0.6);
 }
 
-/* Output panel */
+/* Output block */
 pre {
   background: rgba(0, 0, 0, 0.4);
   padding: 1rem;
   border-radius: 0.75rem;
-  color: #66ffff;
+  color: #e0f7ff;
   font-family: "Courier New", monospace;
   white-space: pre-wrap;
   word-wrap: break-word;
-  box-shadow: inset 0 0 10px rgba(102, 153, 204, 0.2);
-  border: 1px solid rgba(102, 153, 204, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 10px rgba(140, 255, 255, 0.2);
 }
