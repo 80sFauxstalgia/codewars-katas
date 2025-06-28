@@ -1,6 +1,12 @@
 import { useState } from "react";
 
-const katas = ["filterList", "numberToString", "uniqueInOrder", "isIsogram"];
+const katas = [
+  "filterList",
+  "numberToString",
+  "uniqueInOrder",
+  "isIsogram",
+  "returnNegative",
+];
 
 function App() {
   const [selectedKata, setSelectedKata] = useState("");
