@@ -6,13 +6,15 @@ const katas = [
   "uniqueInOrder",
   "isIsogram",
   "returnNegative",
+  "foundNeedle",
 ];
 
 function App() {
   const [selectedKata, setSelectedKata] = useState("");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [asArray, setAsArray] = useState(true); //checkbox
+  const [asArray, setAsArray] = useState(true);
+  const [stripQuotes, setStripQuotes] = useState(true);
   const [error, setError] = useState("");
 
   async function runTest() {
@@ -21,25 +23,28 @@ function App() {
       return;
     }
 
-    setError(""); // Clear any previous error
+    setError("");
 
     try {
       const kataModule = await import(`./katas/${selectedKata}.js`);
 
-      // ─── custom parser ──────────────────────────────────────────────
       let parsedInput;
       if (asArray) {
         parsedInput = input
           .split(",")
           .map((val) => val.trim())
           .map((val) => {
-            const num = Number(val);
-            return isNaN(num) ? val : num; // convert numeric strings
+            const maybeUnquoted = stripQuotes
+              ? val.replace(/^["']|["']$/g, "")
+              : val;
+            const num = Number(maybeUnquoted);
+            return isNaN(num) ? maybeUnquoted : num;
           });
       } else {
-        parsedInput = input.trim();
+        parsedInput = stripQuotes
+          ? input.trim().replace(/^["']|["']$/g, "")
+          : input.trim();
       }
-      // ────────────────────────────────────────────────────────────────
 
       const result = kataModule.default(parsedInput);
       setOutput(JSON.stringify(result, null, 2));
@@ -70,6 +75,7 @@ function App() {
             </option>
           ))}
         </select>
+
         {error && (
           <div
             style={{
@@ -82,15 +88,22 @@ function App() {
           </div>
         )}
 
-        <label style={{ display: "block", marginBottom: "1rem" }}>
-          <input
-            type="checkbox"
-            checked={asArray}
-            onChange={() => setAsArray(!asArray)}
-            style={{ marginRight: "0.5rem" }}
-          />
-          Treat input as array
-        </label>
+        {/* ─── Single Toggles ───────────────────────────────────────────── */}
+        <div className="toggle-group">
+          <button
+            onClick={() => setAsArray(!asArray)}
+            className={`toggle-button ${asArray ? "active" : ""}`}
+          >
+            {`Array Mode: ${asArray ? "ON" : "OFF"}`}
+          </button>
+
+          <button
+            onClick={() => setStripQuotes(!stripQuotes)}
+            className={`toggle-button ${stripQuotes ? "active" : ""}`}
+          >
+            {`Strip Quotes: ${stripQuotes ? "ON" : "OFF"}`}
+          </button>
+        </div>
 
         <input
           type="text"
