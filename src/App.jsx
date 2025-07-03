@@ -7,6 +7,7 @@ const katas = [
   "isIsogram",
   "returnNegative",
   "foundNeedle",
+  "mumble",
 ];
 
 function App() {
@@ -56,12 +57,12 @@ function App() {
   return (
     <div className="app-bg">
       <div className="glass-card">
-        <h1>Kata Runner</h1>
+        <h1>KATA RUNNER</h1>
         <img
+          id="codewars-badge"
           src="https://www.codewars.com/users/g0bizzle/badges/large"
           alt="Codewars Badge"
         />
-
         <p>Select a kata and enter input to run the test.</p>
 
         <select
